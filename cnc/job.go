@@ -28,6 +28,49 @@ func (j *Job) AddCommand(cmd_line string) {
 	j.commmands = append(j.commmands, cmd_line)
 }
 
+func (j *Job) GenerateSurfaceCommands(minX, minY, maxX, MaxY, cutDpeth float64) {
+
+	const deltaY float64 = (40.0 / 100.0) * 24.0
+
+	toolX := minX
+	toolY := minY
+
+	j.AddMovement("G00", CommandParamsT{"Z": j.safeZ})
+	j.AddMovement("G01", CommandParamsT{"X": toolX, "Y": toolY})
+
+	j.AddMovement("G01", CommandParamsT{"Z": -cutDpeth})
+
+	for {
+		j.AddComment("loop")
+		// Setup pass direction
+
+		if toolX < maxX {
+
+			toolX = maxX
+
+		} else {
+
+			toolX = minX
+
+		}
+
+		j.AddMovement("G01", CommandParamsT{"X": toolX})
+
+		toolY += deltaY
+
+		if toolY > MaxY {
+
+			break
+
+		}
+
+		j.AddMovement("G01", CommandParamsT{"Y": toolY})
+
+	}
+
+	j.AddMovement("G00", CommandParamsT{"Z": j.safeZ})
+}
+
 func (j *Job) AddMovement(cmd string, params CommandParamsT) {
 
 	parts := make([]string, 0)
