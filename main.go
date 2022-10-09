@@ -34,8 +34,6 @@ func main() {
 		printUsageAndQuit()
 	}
 
-	fmt.Println(*boardFilePath)
-
 	job := cnc.NewJob()
 
 	job.AddCommand("T1")  // tool 1
@@ -43,7 +41,9 @@ func main() {
 	job.AddCommand("G17") // XY plane selection
 	job.AddCommand("G90") // Abs positions
 
-	job.AddMovement("G01", cnc.CommandParamsT{"F": float32(cnc.DefaultHorizontalFeedRate)}) // G01 feedrate
+	job.AddMovement("G01", cnc.CommandParamsT{"F": cnc.DefaultHorizontalFeedRate}) // G01 feedrate
+
+	job.DrillHole(100, 50, 19.5, 2.5, 6.35, 0.5)
 
 	job.Print()
 
