@@ -41,11 +41,11 @@ func main() {
 	job.AddCommand("G17") // XY plane selection
 	job.AddCommand("G90") // Abs positions
 
-	job.AddMovement("G01", cnc.CommandParamsT{"F": 2000.0}) // G01 feedrate
+	job.AddMovement("G01", cnc.CommandParamsT{"F": 1600.0}) // G01 feedrate
 
 	// job.DrillHole(100, 50, 19.5, 2.5, 6.35, 0.5)
 
-	job.GenerateSurfaceCommands(0.0, 9.6, 770.0, 1270.0, 0.75)
+	job.GenerateSurfaceCommands(0.0, 0, 770.0, 1270.0, 1.00)
 
 	job.Print()
 
