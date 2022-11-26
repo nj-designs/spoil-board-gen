@@ -45,8 +45,7 @@ func main() {
 
 	// job.DrillHole(100, 50, 19.5, 2.5, 6.35, 0.5)
 
-	job.GenerateSurfaceCommands(0.0, 0, 770.0, 1270.0, 1.00)
+	job.GenerateSurfaceCommands(0.0, 0, 215, 230, 0.5)
 
 	job.Print()
-
 }
