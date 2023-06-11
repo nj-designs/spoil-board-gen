@@ -9,9 +9,9 @@ import (
 )
 
 type BoardDimensions struct {
-	Width     float32 `json:"width`
-	Height    float32 `json:"height`
-	Thickness float32 `json:"thickness`
+	Width     float32 `json:"width"`
+	Height    float32 `json:"height"`
+	Thickness float32 `json:"thickness"`
 }
 
 type BoardDescriptor struct {
@@ -20,13 +20,11 @@ type BoardDescriptor struct {
 }
 
 func printUsageAndQuit() {
-
 	fmt.Println("Usage: spg --board <path to board.json file>")
 	os.Exit(1)
 }
 
 func main() {
-
 	boardFilePath := flag.String("board", "", "Spoil Board description file")
 	flag.Parse()
 
